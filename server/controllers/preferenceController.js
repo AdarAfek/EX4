@@ -131,6 +131,7 @@ const addPreference = async (req, res) => {
 
     const userId = await verifyAccessToken(accessToken);
     if (!userId) {
+      console.log(accessToken);
       return res.status(401).json({ error: "Invalid Access Token" });
     }
 
@@ -152,11 +153,10 @@ const addPreference = async (req, res) => {
 
     const connection = await db.createConnection();
     const [result] = await connection.execute(
-      "INSERT INTO tbl_11_preferences(user_id,start_date,end_date,destination,type) VALUES (?, ?, ?, ?, ?)",
+      "INSERT INTO tbl_11_preferences (user_id,start_date,end_date,destination,type) VALUES (?, ?, ?, ?, ?)",
       [userId, startDate, endDate, destination, vacationType]
     );
     await db.closeConnection();
-
     res.status(200).json({ preference_id: result.insertId });
   } catch (error) {
     res
