@@ -7,7 +7,7 @@ const {
 } = require("../controllers/preferenceController"); // Corrected import
 const preferenceRouter = Router();
 
-preferenceRouter.get("/", getPreferences);
+preferenceRouter.get("/",getPreferences);
 preferenceRouter.get("/choose", chosenVacation);
 preferenceRouter.post("/", addPreference);
 preferenceRouter.put("/:preferenceId", updatePreference);

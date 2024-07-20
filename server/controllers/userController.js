@@ -6,6 +6,8 @@ const generateAccessCode = () => crypto.randomBytes(32).toString("hex");
 async function registerNewUser(req, res) {
   const { username, password } = req.body;
   if (!username || !password) {
+    console.log(username); 
+    console.log("Missing username or password"); 
     return res.status(400).json({ error: "Missing Field" });
   }
 
